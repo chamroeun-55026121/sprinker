@@ -34,8 +34,18 @@ public class SystemControllerTest {
     }
 
 	@Test
-	public void testSuccess() throws Exception {
+	public void testVersion() throws Exception {
 		final MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/version/json");
+
+        final ResultActions result = mvc.perform(builder)
+                .andExpect(status().isOk());
+
+        log.info(result.andReturn().getResponse().getContentAsString());
+	}
+    
+    @Test
+	public void testEcho() throws Exception {
+		final MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/echo/hello");
 
         final ResultActions result = mvc.perform(builder)
                 .andExpect(status().isOk());
