@@ -7,12 +7,10 @@
 FROM anapsix/alpine-java:8_server-jre
 MAINTAINER Peerapat Asoktummarungsri <nuboat@gmail.com>
 
-ENV JAVA_HOME /opt/jdk
-
-COPY target/sprinker*.jar /root
+COPY target/sprinker*.jar /root/sprinker.jar
 
 # Define working directory.
 WORKDIR /root
 
 # Define default command.
-CMD ["java -server -Xms128M -Xmx512M -jar sprinker-1.0-SNAPSHOT.jar & disown"]
+CMD ["java", "-server", "-jar", "sprinker.jar"]
